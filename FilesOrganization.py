@@ -12,6 +12,7 @@ import os
 infile = "G:\\My Drive\\Others\\PsyTrance\\AllThem\\"
 
 def rename_multiple_files(infile):
+    
     _, _, files = next(os.walk(infile))
 
     for track in files:
@@ -23,7 +24,7 @@ def rename_multiple_files(infile):
         
 def create_folder(dst_path, FolderName):
     '''
-    artist = 
+    artist = FolderName
     '''
     try:
         # Use function mkdir for create a new folder 
