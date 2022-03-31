@@ -80,58 +80,35 @@ def string_to_list(alt, lat, lon):
     return round(lat_mag, 2), round(lon_mag, 2)
 
 
+def main():
+    '''
+    Example
+    Enter with a list of sites and their country   
+    '''
 
-"""
-output = []
+    output = []
 
-for elem in range(len(sites)):
+    for city, country in zip(cities, 
+                             countries):
+        try:
+            lat_geo, lon_geo = get_coords(city, country)
+            lat_mag, lon_mag = string_to_list(0, lat_geo, lon_geo)
+            
+            output.append([f"{city}, {country}", 
+                               lat_geo, lon_geo, 
+                               lat_mag, lon_mag])
+        except:
+            print(f"{city}, {country} doesn't work")
+            output.append([f"{city}, {country}", 
+                               np.nan, np.nan, 
+                               np.nan, np.nan])
+            
+    # In case of dataframe is the output
+    #df.index.name = "acc"
+    #df.columns = ["name", "lat_geo", "lon_geo", 
+                  #"lat_mag", "lon_mag"]
     
-    loc = sites[elem].split(', ')
+    #df = df.sort_values(by=['name'], ascending = True)
     
-    city = loc[0]
-    country = loc[1]
-    
-    try:
-        lat_geo, lon_geo = get_coords(city, country)
-        print(f"{city}, {country} does work")
-        output.append([f"{city}, {country}", 
-                           lat_geo, lon_geo])
-    except:
-        print(f"{city}, {country} doesn't work")
-        output.append([f"{city}, {country}", 
-                           np.nan, np.nan])
+    return df
 
-##Resolver esse problema de salvar os dados (str + numeric) em arquivo de texto
-
-
-#from GeoMagCoords import *
-
-output = []
-
-for name in sites.keys():
-    
-    if (name == 'rga') or (name == 'tcm'): 
-        country = 'Argentina'
-    else:
-        country = 'Brazil'
-        
-    city = sites[name]
-    lat, lon  = get_coords(city, country)
-    output.append([lat, lon, city.title(), name])
-    
-
-"""
-
-sites = np.array([['Rio Grande', 'rga', -53.78, -67.70],
-                ['São Martinho da Serra', 'sms', -29.53,-53.85], 
-                ['Tucumán', 'tcm', -26.56, -64.88], 
-                ['Sao Jose Dos Campos', 'sjc', -23.19, -45.89], 
-                ['Vassouras', 'vss', -22.41, -43.66],
-                ['Jataí', 'jat', -17.88, -51.72], 
-                ['Cuiabá', 'cba', -15.60, -56.10], 
-                ['Araguatins', 'ara', -5.65, -48.12], 
-                ['Eusébio', 'eus',  -3.89, -38.45], 
-                ['São Luis', 'slz', -2.53, -44.30]])
-
-
-print(sites[:, 2])
