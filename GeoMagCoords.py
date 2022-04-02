@@ -80,7 +80,7 @@ def string_to_list(alt, lat, lon):
     return round(lat_mag, 2), round(lon_mag, 2)
 
 
-def main():
+def main(cities, countries):
     '''
     Example
     Enter with a list of sites and their country   
@@ -102,7 +102,8 @@ def main():
             output.append([f"{city}, {country}", 
                                np.nan, np.nan, 
                                np.nan, np.nan])
-            
+    
+    df = pd.DataFrame(output)
     # In case of dataframe is the output
     #df.index.name = "acc"
     #df.columns = ["name", "lat_geo", "lon_geo", 
