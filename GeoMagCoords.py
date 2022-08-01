@@ -43,23 +43,24 @@ def get_coords(city, country):
  
         
 
-def geo_to_mag(alt, lat, lon):
+def geo_to_mag(alt, lat, lon, date):
     #call with altitude in kilometers and lat/lon in degrees 
     
-    Re = 6371.0 #mean Earth radius in kilometers
+    Re = 6378.0 #mean Earth radius in kilometers
     
     #setup the geographic coordinate object with altitude in earth radii 
-    cvals = coord.Coords([float(alt + Re)/Re, 
+    cvals = coord.Coords([float(alt + Re), 
                           float(lat), float(lon)], 
                          'GEO', 'sph', ['Re','deg','deg'])
     
+    date = str(date).replace(' ', 'T')
     #set time epoch for coordinates:
-    cvals.ticks = Ticktock(['2021-01-01T12:00:00'], 'ISO')
+    cvals.ticks = Ticktock([date], 'UTC')
     
     #return the magnetic coords in the same units as the geographic:
     return cvals.convert('MAG','sph')
 
-def string_to_list(alt, lat, lon):
+def string_to_list(alt, lat, lon, date):
     
     """
     Convert the results from 'geo_to_mag' functions
@@ -67,7 +68,7 @@ def string_to_list(alt, lat, lon):
     
     """
 
-    first = str(geo_to_mag(alt, lat, lon))
+    first = str(geo_to_mag(alt, lat, lon, date))
     
     start = first.find('[[')
     end = first.find(']]')
