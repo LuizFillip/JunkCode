@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Sep 25 22:33:25 2021
-
-@author: LuizF
-"""
-
 def age_birthday(year, 
                  month, 
                  day, 
