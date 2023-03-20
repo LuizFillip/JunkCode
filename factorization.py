@@ -91,7 +91,4 @@ class factorization:
     
         return self.lcm
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 3af8c50 (add an Readme)

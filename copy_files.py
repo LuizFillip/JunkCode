@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import numpy as np
 
-year = 2013
+year = 2015
 site = "SAA"
 infile = f"D:/drift/{site}/{year}/"
 saveit = f"D:/drift/{site}1/{year}/"
@@ -44,3 +44,19 @@ def doy_to_year(year, site, infile, saveit):
                           f"{year}-12-31", 
                           freq = "1D")
     
+    for dt in dates:
+        doy_str = dt.strftime("%j")
+        src = os.path.join(infile, doy_str)
+        
+        files = os.listdir(src)
+        try:
+            print("coping...", doy_str)
+            for filename in files:
+                shutil.copy(os.path.join(src, filename), 
+                            os.path.join(saveit, filename))
+                
+        except:
+            continue
+            
+    
+  
