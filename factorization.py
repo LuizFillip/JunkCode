@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep 23 23:08:07 2021
-
-@author: LuizF
-"""
-
 class factorization:
     
     """
@@ -84,7 +77,8 @@ class factorization:
             greater = self.b
     
         while True:
-            if((greater % self.a == 0) and (greater % self.b == 0)):
+            if((greater % self.a == 0) and 
+               (greater % self.b == 0)):
                 self.lcm = greater
                 break
             greater += 1
